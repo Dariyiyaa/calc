@@ -1,13 +1,15 @@
 #include <stdio.h>
-#include "CompileAs.cpp"
+#include "Hash.h"
+#include "header.h"
+#include "mainHeader.h"
 
 //TO DO hash table -> switch -> bytecode
 
 int main(int argc, char* argv[])
-{
+{  
     if(argc != 3)
     {
-        printf("Wrong input data");
+        printf("Wrong input data in main");
         return 1;
     }
 

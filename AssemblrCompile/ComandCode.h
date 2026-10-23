@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "C:\Users\Daryia\DED\stack\Stack_t\error.h"
 
 enum ProcessorCommand
 {
@@ -28,5 +29,7 @@ enum ProcessorCommand
     pcCALL = 0x10,
     pcRET = 0x11,
 };
+
+
 
 

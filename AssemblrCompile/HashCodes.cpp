@@ -1,42 +1,21 @@
-// #include <stdio.h>
-// #include <unistd.h>
-// // #include "ComandCode.h"
+#include <stdio.h>
+#include <unistd.h>
 
 
-// unsigned long long HashDjb(const char* command);
-// int CreateHashTable(FILE* ptr);
+unsigned int HashDjb2(const char* command);
+
+unsigned int HashDjb2(const char* command)
+{
+    unsigned int hash = 5381;
+    int c = 0;
+    while ((c = *command++) != '\0')
+    {
+        hash = (hash << 5) + hash + c;
+    }
+
+    return hash;
+}
 
 
 
-
-// int CreateHashTable(FILE* ptr)
-// {
-//     const char* Commands[] = {
-//         "hshHLT", 
-//         "hshPUSH", 
-//         "hshPOP", 
-//         "hshADD",
-//         "hshSUB",
-//         "hshMUL",
-//         "hshDIV",
-//         "hshOUT"
-//     };
-
-//     for (size_t i = 0; i < sizeof(Commands)/sizeof(Commands[0]); i++)
-//     {
-//         unsigned long long hash = HashDjb2(Commands[i]);
-//         fprintf(ptr, "%s = %llu,\n", Commands[i], hash);
-//     }
-
-//     return 0;
-        
-// }
-
-// int main()
-// {
-//     FILE* hash_code_ptr = fopen("HashCodes.txt", "w");
-
-//     CreateHashTable(hash_code_ptr);   
-
-// }
 

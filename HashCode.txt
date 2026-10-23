@@ -1,0 +1,8 @@
+hshHLT        =    47369200,
+hshPUSH       =    1563480936,
+hshPOP        =    47378007,
+hshADD        =    47361297,
+hshSUB        =    47381458,
+hshMUL        =    47374934,
+hshDIV        =    47364747,
+hshOUT        =    47377120,

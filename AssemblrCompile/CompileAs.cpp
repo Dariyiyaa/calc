@@ -1,36 +1,16 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdint.h>
-#include "C:\Users\Daryia\DED\stack\Stack_t\error.h"
+
 #include "Hash.h"
 #include "ComandCode.h"
-#include "Print.cpp"
+#include "C:\Users\Daryia\DED\stack\Stack_t\error.h"
+#include "header.h"
 
-#define MAXLINE 64
 
 errorReturn PrintInFileCode(FILE* output_ptr, enum ProcessorCommand command, char* value);
 errorReturn CompileAsmblr(struct File* input, struct File* output);
-unsigned long long HashDjb(const char* command);
 
-unsigned long long HashDjb(const char* command)
-{
-    unsigned long long hash = 5381;
-    int c = 0;
-    while ((c = *command++) != '\0')
-    {
-        hash = (hash << 5) + hash + c;
-    }
-
-    return hash;
-}
-
-errorReturn PrintInFileCode(FILE* output_ptr, enum ProcessorCommand command, char* value)
-{
-    fwrite(&command, sizeof(uint8_t), 1, output_ptr);
-    fwrite(value, sizeof(uint8_t), 1, output_ptr);
-
-    CREATE_RETURNING_VALUE(Success)
-}
+#define MAXLINE 64
 
 errorReturn CompileAsmblr(struct File* input, struct File* output)
 {
@@ -48,7 +28,7 @@ errorReturn CompileAsmblr(struct File* input, struct File* output)
             CREATE_RETURNING_VALUE(ArgumentsHasntMatched)    
         }
 
-        unsigned long long hash_command = HashDjb(command);
+        unsigned int hash_command = HashDjb2(command);
 
         if (arg_matched == 1)
         {
@@ -79,7 +59,7 @@ errorReturn CompileAsmblr(struct File* input, struct File* output)
                     break;
 
                 default: 
-                    CREATE_RETURNING_VALUE(WrongInput)
+                    CREATE_RETURNING_VALUE(ArgumentsHasntMatched)
             }
         }
 
@@ -104,5 +84,18 @@ errorReturn CompileAsmblr(struct File* input, struct File* output)
         //     }
         // }
     }
+    CREATE_RETURNING_VALUE(Success)
+}
+
+
+errorReturn PrintInFileCode(FILE* output_ptr, enum ProcessorCommand command, char* value)
+{
+    fwrite(&command, sizeof(uint8_t), 1, output_ptr);
+
+    if (value != NULL)
+    {
+    fwrite(value, sizeof(uint8_t), 1, output_ptr);
+    }
+    
     CREATE_RETURNING_VALUE(Success)
 }
