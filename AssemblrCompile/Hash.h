@@ -20,6 +20,8 @@ enum HashCommand
     hshMUL        =    47374934,
     hshDIV        =    47364747,
     hshOUT        =    47377120,
+
+
 };
 
 

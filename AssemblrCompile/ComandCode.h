@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include "C:\Users\Daryia\DED\stack\Stack_t\error.h"
 
 enum ProcessorCommand
 {

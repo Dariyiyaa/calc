@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdint.h>
+#include <assert.h>
 
 #include "Hash.h"
 #include "ComandCode.h"
@@ -9,15 +10,27 @@
 
 errorReturn PrintInFileCode(FILE* output_ptr, enum ProcessorCommand command, char* value);
 errorReturn CompileAsmblr(struct File* input, struct File* output);
+void WriteToFile(FILE* file, uint32_t value);
 
-#define MAXLINE 64
+#define MAXLINE 128
 
 errorReturn CompileAsmblr(struct File* input, struct File* output)
 {
-    char buf[2*MAXLINE] = {};
+    // putchar('\n');
 
+    if (input -> ptr == NULL)
+    {
+        // putchar('\n');
+        CREATE_RETURNING_VALUE(NullDataPointer)
+    }
+
+    char buf[MAXLINE] = {};
+    
+    // putchar('\n');
+    
     while (fgets(buf, sizeof(buf), input -> ptr))
     {
+        putchar('\n');
         char command[MAXLINE] = {};
         char value[MAXLINE] = {};
 
@@ -25,6 +38,7 @@ errorReturn CompileAsmblr(struct File* input, struct File* output)
 
         if (arg_matched == 0)
         {
+            // putchar('\n');
             CREATE_RETURNING_VALUE(ArgumentsHasntMatched)    
         }
 
@@ -88,14 +102,31 @@ errorReturn CompileAsmblr(struct File* input, struct File* output)
 }
 
 
+
+
 errorReturn PrintInFileCode(FILE* output_ptr, enum ProcessorCommand command, char* value)
 {
-    fwrite(&command, sizeof(uint8_t), 1, output_ptr);
-
-    if (value != NULL)
+    if (output_ptr == NULL)
     {
-    fwrite(value, sizeof(uint8_t), 1, output_ptr);
+        CREATE_RETURNING_VALUE(NullFilePointer)
     }
-    
+
+    fwrite(&command, sizeof(uint8_t), 4, output_ptr);
+
+    if (value == NULL)
+    {
+        CREATE_RETURNING_VALUE(NullDataPointer)
+    }
+
+    if (value[0] != '\0')
+    {
+        int val_num = 0;
+
+        if (sscanf(value, "%d", &val_num) == 1) 
+        {
+            fwrite(&val_num, sizeof(uint8_t), 4, output_ptr); 
+        }
+    }
+
     CREATE_RETURNING_VALUE(Success)
 }
