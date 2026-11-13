@@ -1,4 +1,6 @@
 #include "stdio.h"
-#include "C:\Users\Daryia\DED\stack\Stack_t\error.h"
+#include "error.h"
 
-errorReturn CompileAsmblr(struct File* input, struct File* output);
+errorReturn CompileAsmblr(struct Compile* Comp);
+
+errorReturn WriteDumpHeader(struct Compile* Comp);

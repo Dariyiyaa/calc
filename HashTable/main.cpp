@@ -1,11 +1,11 @@
 #include <stdio.h>
 
 int CreateHashTable(FILE* ptr);
-int HashDjb2(const char* command);
+unsigned int HashDjb2(const char* command);
 
-int HashDjb2(const char* command)
+unsigned int HashDjb2(const char* command)
 {
-    int hash = 5381;
+    unsigned int hash = 5381;
     int c = 0;
     while ((c = *command++) != '\0')
     {
@@ -18,20 +18,29 @@ int HashDjb2(const char* command)
 int CreateHashTable(FILE* ptr)
 {
     const char* Commands[] = {
-        "hshHLT", 
-        "hshPUSH", 
-        "hshPOP", 
-        "hshADD",
-        "hshSUB",
-        "hshMUL",
-        "hshDIV",
-        "hshOUT"
+        "HLT", 
+        "PUSH", 
+        "POP", 
+        "ADD",
+        "SUB",
+        "MUL",
+        "DIV",
+        "OUT",
+        "JMP",
+        "JA",
+        "JAE",
+        "JB",
+        "JBE",
+        "JE",
+        "JNE",
+        "CALL",
+        "RET",
     };
 
     for (size_t i = 0; i < sizeof(Commands)/sizeof(Commands[0]); i++)
     {
         int hash = HashDjb2(Commands[i]);
-        fprintf(ptr, "%s        =    %d,\n", Commands[i], hash);
+        fprintf(ptr, "hsh%s        =    %d,\n", Commands[i], hash);
     }
 
     return 0;

@@ -1,8 +1,6 @@
 #include <stdio.h>
-#include <unistd.h>
+#include "Hash.h"
 
-
-unsigned int HashDjb2(const char* command);
 
 unsigned int HashDjb2(const char* command)
 {
@@ -12,6 +10,7 @@ unsigned int HashDjb2(const char* command)
     {
         hash = (hash << 5) + hash + c;
     }
+
 
     return hash;
 }

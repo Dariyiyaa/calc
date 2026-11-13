@@ -6,26 +6,31 @@
 #include <stddef.h>
 
 
+
 unsigned int HashDjb2(const char* command);
 int CreateHashTable(FILE* ptr);
 
 
 enum HashCommand
 {
-    hshHLT        =    47369200,
-    hshPUSH       =    1563480936,
-    hshPOP        =    47378007,
-    hshADD        =    47361297,
-    hshSUB        =    47381458,
-    hshMUL        =    47374934,
-    hshDIV        =    47364747,
-    hshOUT        =    47377120,
-
-
+    hshHLT        =    193457997,
+    hshPUSH       =    2089443941,
+    hshPOP        =    193466804,
+    hshADD        =    193450094,
+    hshSUB        =    193470255,
+    hshMUL        =    193463731,
+    hshDIV        =    193453544,
+    hshOUT        =    193465917,
+    hshJMP        =    193460204,
+    hshJA         =    5862416,
+    hshJAE        =    193459797,
+    hshJB         =    5862417,
+    hshJBE        =    193459830,
+    hshJE         =    5862420,
+    hshJNE        =    193460226,
+    hshCALL       =    2088954753,
+    hshRET        =    193468656,
 };
-
-
-
 
 
 #endif 
